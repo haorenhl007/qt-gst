@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Images/Controls/Page/Arrow/Switch_Left.png</file>
+        <file>Images/Controls/Page/Arrow/Switch_Left_Active.png</file>
+        <file>Images/Controls/Page/Arrow/Switch_Right.png</file>
+        <file>Images/Controls/Page/Arrow/Switch_Right_Active.png</file>
+        <file>qrcode.qml</file>
+        <file>setting.qml</file>
+        <file>sidebar.qml</file>
+    </qresource>
+</RCC>
