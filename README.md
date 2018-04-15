@@ -1,3 +1,20 @@
+#
+
+## Librarys
+
+### qrencode
+
+```sh
+sudo apt-get install libqrencode-dev
+sudo apt-get install qrencode
+sudo apt-get install libqrencode-dev libghc-qrencode-dev libimager-qrcode-perl
+
+# example
+# -s, size
+# -l, error collectin level, {L, M, Q, H}
+qrencode -o qrcode.png -s 6 -l H 'http://qrcode-string'
+```
+
 # Qt Learning
 
 Here is some Qt5 learning note and pratice examples.

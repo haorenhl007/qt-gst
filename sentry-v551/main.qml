@@ -39,6 +39,11 @@ ApplicationWindow {
         y: 228
         text: qsTr("QR Code")
         anchors.verticalCenter: parent.verticalCenter
+
+        // todo: if source link failed, process
+//        onStatesChanged: {
+//            console.log("State change to " + state)
+//        }
     }
 
     RowLayout {

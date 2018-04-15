@@ -15,3 +15,16 @@ include(deployment.pri)
 
 DISTFILES +=
 
+HEADERS += \
+
+# Now tell qmake to link to QtGStreamer and also use its include path and Cflags.
+contains(QT_VERSION, ^4\\..*) {
+  PKGCONFIG += QtGStreamer-1.0 QtGStreamerUi-1.0
+}
+contains(QT_VERSION, ^5\\..*) {
+  PKGCONFIG += Qt5GStreamer-1.0 Qt5GStreamerUi-1.0
+#  QT += widgets
+}
+
+QMAKE_CXXFLAGS += -std=c++0x
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x040900
