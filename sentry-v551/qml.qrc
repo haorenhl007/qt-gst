@@ -8,5 +8,9 @@
         <file>qrcode.qml</file>
         <file>setting.qml</file>
         <file>sidebar.qml</file>
+        <file>main.qml</file>
+        <file>StackDelegate.qml</file>
+        <file>PopMessage.qml</file>
+        <file>PlayStream.qml</file>
     </qresource>
 </RCC>

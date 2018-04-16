@@ -48,6 +48,10 @@ void AccountLogin::showMessage(QString message)
 //    dia.setText(message + tr("\n"));
 //    dia.exec();
     qDebug() << message;
+    if (message.compare("Accepted") == 0) {
+        // todo: go to next page
+        qDebug() << "compare ok";
+    }
 }
 
 void AccountLogin::sendMessage(QString account, QString password)

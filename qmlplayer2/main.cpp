@@ -36,6 +36,7 @@ int main(int argc, char **argv)
     QGst::init(&argc, &argv);
 
     QQuickView view;
+//    view.setFlags(Qt::FramelessWindowHint);
 
     QGst::Quick::VideoSurface *surface = new QGst::Quick::VideoSurface;
     view.rootContext()->setContextProperty(QLatin1String("videoSurface1"), surface);
