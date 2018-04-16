@@ -10,7 +10,9 @@ ApplicationWindow {
 //    height: 480 //height: Screen.height
     title: qsTr("Hello World")
 //    flags: Qt.WA_TranslucentBackground | Qt.FramelessWindowHint
-    color: Qt.rgba(0.9, 0.9, 0.9, 0.9) //color: "transparent"
+//    color: Qt.rgba(0.9, 0.9, 0.9, 0.9)
+    property alias textField1: textField1
+    property alias textField: textField //color: "transparent"
 //    menuBar: MenuBar {
 //        Menu {
 //            title: qsTr("File")
@@ -31,6 +33,9 @@ ApplicationWindow {
 //            Qt.quit();
 //        }
 //    }
+
+    signal qmlSetName(string account, string password)
+    signal qmlUpdateName( string name )
 
     Button {
         id: button1
@@ -126,8 +131,20 @@ ApplicationWindow {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: rowLayout2.bottom
         //        Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+
+        onClicked: {
+            applicationWindow.qmlSetName(textField.text, textField1.text)
+        }
     }
 
+    function updateMsg( data ){
+//        txtName.text = data
+        console.log( data );
+    }
 
+    Component.onCompleted:
+    {
+        applicationWindow.qmlUpdateName.connect( updateMsg );
+    }
 }
 

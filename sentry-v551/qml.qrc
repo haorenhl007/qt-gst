@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
+        <file>account.qml</file>
         <file>Images/Controls/Page/Arrow/Switch_Left.png</file>
         <file>Images/Controls/Page/Arrow/Switch_Left_Active.png</file>
         <file>Images/Controls/Page/Arrow/Switch_Right.png</file>
