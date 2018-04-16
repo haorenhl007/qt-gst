@@ -21,6 +21,10 @@ AccountLogin::AccountLogin(QObject *parent)
     mosq->connect_async(host.data(), port.toInt());
     mosq->loop_start();
 
+    QString currentTopic = "ar/dev/display/91be768cfa27dc35/status/online";
+    QByteArray topic = currentTopic.toLocal8Bit();
+    mosq->subscribe(mosq->getMID(), topic.data(), 2);
+
     qDebug() << LIBMOSQUITTO_VERSION_NUMBER;
     qDebug() << host << id << port;
 }
