@@ -2,53 +2,50 @@ import QtQuick 2.3
 import QtQuick.Controls 1.2
 import QtQuick.Layouts 1.2
 
-ApplicationWindow {
-    id: applicationWindow
-    visible: true
-    visibility: "FullScreen"
-//    width: 640 //width: Screen.width
-//    height: 480 //height: Screen.height
-    title: qsTr("Hello World")
-//    flags: Qt.WA_TranslucentBackground | Qt.FramelessWindowHint
-//    color: Qt.rgba(0.9, 0.9, 0.9, 0.9)
+Item {
+//    objectName: accoutPage
+    id: accountPage
+    width: 1920
+    height: 1080
+
     property alias textField1: textField1
-    property alias textField: textField //color: "transparent"
-//    menuBar: MenuBar {
-//        Menu {
-//            title: qsTr("File")
-//            MenuItem {
-//                text: qsTr("&Open")
-//                onTriggered: console.log("Open action triggered");
-//            }
-//            MenuItem {
-//                text: qsTr("Exit")
-//                onTriggered: Qt.quit();
-//            }
-//        }
-//    }
+    property alias textField: textField
 
-//    MouseArea {
-//        anchors.fill: parent
-//        onClicked: {
-//            Qt.quit();
-//        }
-//    }
+    // PageLoader using
+    signal message(string page)
 
+    // MQTT using
     signal qmlSetName(string account, string password)
     signal qmlUpdateName( string name )
 
-    Button {
-        id: button1
-        iconSource: "qrc:/Images/Controls/Page/Arrow/Switch_Left.png"
-        x: 69
-        y: 228
-        text: qsTr("QR Code")
-        anchors.verticalCenter: parent.verticalCenter
+//    Button {
+//        id: button1
+//        iconSource: "qrc:/Images/Controls/Page/Arrow/Switch_Left.png"
+//        x: 69
+//        y: 228
+//        text: qsTr("QR Code")
+//        anchors.verticalCenter: parent.verticalCenter
 
         // todo: if source link failed, process
 //        onStatesChanged: {
 //            console.log("State change to " + state)
 //        }
+//        onClicked: {
+//            accountPage.message("QRCode.qml");
+//        }
+//    }
+    Image {
+        id: switchLeft
+        anchors.left: parent.left
+        anchors.leftMargin: 0
+        anchors.verticalCenter: parent.verticalCenter
+        source: "qrc:/Images/Controls/Page/Arrow/Switch_Left.png"
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                accountPage.message("QRCode.qml")
+            }
+        }
     }
 
     RowLayout {
@@ -133,7 +130,7 @@ ApplicationWindow {
         //        Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
         onClicked: {
-            applicationWindow.qmlSetName(textField.text, textField1.text)
+            accountPage.qmlSetName(textField.text, textField1.text)
         }
     }
 
@@ -144,7 +141,6 @@ ApplicationWindow {
 
     Component.onCompleted:
     {
-        applicationWindow.qmlUpdateName.connect( updateMsg );
+        accountPage.qmlUpdateName.connect( updateMsg );
     }
 }
-

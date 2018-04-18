@@ -2,91 +2,55 @@ import QtQuick 2.0
 import QtQuick.Controls 1.2
 
 ApplicationWindow {
+    id: mainPage
     visible: true
     visibility: "FullScreen"
 
-    // StackView style
+    property bool isFirst: false;
+
+//    function pageSwitch() {
+//        if (isFirst) {
+//            pageLoader.source = "account.qml"
+//        } else {
+//            pageLoader.source = "qrcode.qml"
+//        }
+//        isFirst = !isFirst;
+//    }
+
+//    MouseArea {
+//        anchors.fill: parent
+//        onClicked: pageSwitch();
+//    }
+
+    Loader {
+        objectName: "pageLoader"
+        id: pageLoader
+        source: "qrc:/QRCode.qml"
+//        sourceComponent: rect
+//        focus: true
+    }
+    Connections {
+        target: pageLoader.item
+        onMessage: {
+            console.log(page)
+            pageLoader.source = page
+        }
+    }
+
     Rectangle {
-        color: "#212126"
-        anchors.fill: parent
-    }
+        id: flowTest
+        width: 30
+        height: 30
+        visible: true
+//        color: parent.color
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 0
 
-    toolBar: BorderImage {
-        border.bottom: 8
-        source: "images/toolbar.png"
-        width: parent.width
-        height: 100
-
-        Rectangle {
-            id: backButton
-            width: opacity ? 60 : 0
-            anchors.left: parent.left
-            anchors.leftMargin: 20
-            opacity: stackView.depth > 1 ? 1 : 0
-            anchors.verticalCenter: parent.verticalCenter
-            antialiasing: true
-            height: 60
-            radius: 4
-            color: backmouse.pressed ? "#222" : "transparent"
-            Behavior on opacity { NumberAnimation{} }
-            Image {
-                anchors.verticalCenter: parent.verticalCenter
-                source: "images/navigation_previous_item.png"
-            }
-            MouseArea {
-                id: backmouse
-                anchors.fill: parent
-                anchors.margins: -10
-                onClicked: stackView.pop()
-            }
-        }
-
-        Text {
-            font.pixelSize: 42
-            Behavior on x { NumberAnimation{ easing.type: Easing.OutCubic} }
-            x: backButton.x + backButton.width + 20
-            anchors.verticalCenter: parent.verticalCenter
-            color: "white"
-            text: "Widget Gallery"
-        }
-    }
-
-    ListModel {
-        id: pageModel
-        ListElement {
-            title: "Account"
-            page: "account.qml"
-        }
-        ListElement {
-            title: "QRcode"
-            page: "qrcode.qml"
-        }
-        ListElement {
-            title: "Setting"
-            page: "setting.qml"
-        }
-    }
-
-    StackView {
-        id: stackView
-        anchors.fill: parent
-
-        focus: true
-        Keys.onReleased: if (event.key === Qt.Key_Back && stackView.depth > 1) {
-                             stackView.pop();
-                             event.accepted = true;
-                         }
-
-        initialItem: Item {
-            width: parent.width
-            height: parent.height
-            ListView {
-                model: pageModel
-                anchors.fill: parent
-                delegate: StackDelegate {
-                    text: title
-                    onClicked: stackView.push(Qt.resolvedUrl(page))
-                }
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                pageLoader.source = "Configure.qml"
             }
         }
     }

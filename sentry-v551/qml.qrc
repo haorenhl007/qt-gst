@@ -1,16 +1,22 @@
 <RCC>
     <qresource prefix="/">
-        <file>account.qml</file>
+        <file>Account.qml</file>
         <file>Images/Controls/Page/Arrow/Switch_Left.png</file>
         <file>Images/Controls/Page/Arrow/Switch_Left_Active.png</file>
         <file>Images/Controls/Page/Arrow/Switch_Right.png</file>
         <file>Images/Controls/Page/Arrow/Switch_Right_Active.png</file>
-        <file>qrcode.qml</file>
-        <file>setting.qml</file>
-        <file>sidebar.qml</file>
+        <file>QRCode.qml</file>
+        <file>ComSetting.qml</file>
+        <file>ComSidebar.qml</file>
         <file>main.qml</file>
         <file>StackDelegate.qml</file>
         <file>PopMessage.qml</file>
         <file>PlayStream.qml</file>
+        <file>Configure.qml</file>
+        <file>ComLive.qml</file>
+        <file>ComPlayback.qml</file>
+        <file>ComEvent.qml</file>
+        <file>ComHeader.qml</file>
+        <file>ComDate.qml</file>
     </qresource>
 </RCC>

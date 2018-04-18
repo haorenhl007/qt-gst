@@ -33,8 +33,8 @@ void AccountLogin::initialize(QObject *qObj)
 {
     this->viewItem = qObj;
 
-    QObject::connect( viewItem, SIGNAL( qmlSetName(QString, QString)), this, SLOT( sendMessage(QString, QString)) );
-    QObject::connect( this, SIGNAL( updateName(QString)), viewItem, SIGNAL( qmlUpdateName(QString)) );
+    QObject::connect(viewItem, SIGNAL( qmlSetName(QString, QString)), this, SLOT( sendMessage(QString, QString)) );
+    QObject::connect(this, SIGNAL( updateName(QString)), viewItem, SIGNAL( qmlUpdateName(QString)) );
 
     QObject::connect(mosq, SIGNAL(messageReceived(QString)), this, SLOT(showMessage(QString)));
 }
