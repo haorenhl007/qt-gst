@@ -18,54 +18,39 @@
 
 #include <QDebug>
 
-#include "accountlogin.h"
+#include "mqttclient.h"
+#include "qmlinfo.h"
+#include "adapterdemo.h"
 
 int main(int argc, char *argv[])
 {
 #if 1
     QGuiApplication app(argc, argv);
 
-    // study: load qml methods, QQmlEngine, QQuickView, QQmlComponent
-    // 1, no auto-create root window
-    QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    // gstreamer init
+    QGst::init(&argc, &argv);
 
-    // if account qml has root window
-//    engine.load(QUrl(QStringLiteral("qrc:/Account.qml")));
-//    QObject* topLevel     = engine.rootObjects().first();
+    // qml register test
+    qmlRegisterType<QmlInfo>("io.qmlinfo", 1, 0, "QmlInfo");
+
+    // method 1
+//    QQmlApplicationEngine engine;
+//    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+
+//    QObject* topLevel = engine.rootObjects().first();
 //    QQuickWindow* rootWin = qobject_cast<QQuickWindow *>( topLevel );
-//    AccountLogin *accountLogin = new AccountLogin();
-//    accountLogin->initialize( rootWin );
 
-    // 2
-//    QQuickView view;
-//    view.setSource(QUrl(QStringLiteral("qrc:/Account.qml")));
-//    view.show();
+    // method 2
+    QQuickView view;
+    view.setFlags(Qt::FramelessWindowHint);
+    view.setSource(QUrl(QStringLiteral("qrc:/main.qml")));
 
-//    QObject *accountObj = qobject_cast<QObject *>(view.rootObject());
-//    AccountLogin accountLogin;
-//    accountLogin.initialize(accountObj);
+    QObject *qmlRoot = view.rootObject();
 
-    // 3
-//    QQmlEngine engine;
-//    QQmlComponent comp(&engine, QUrl(QStringLiteral("qrc:/Account.qml")));
-//    QObject *accountObj = comp.create();
+    AdapterDemo adapterGui;
+    adapterGui.setRootObject(qmlRoot);
 
-    // QQuickView using
-//    QObject *accountObj = view.rootObject();
-//    AccountLogin *accountLogin = new AccountLogin;
-//    accountLogin->initialize(accountObj);
-
-    // study: child qml signal/connection
-    // refer to https://hackmd.io/s/ByZcnT7sl
-//    QObject *qmlObj = engine.rootObjects().first();
-//    QObject *childObj = qmlObj->findChild<QObject *>("pageLoader");
-//    if (childObj)
-//    {
-//        qDebug() << "found";
-//        childObj->setProperty("source", "qrc:/PopMessage.qml");
-//        connect(childObj, SIGNAL(qmlMsg(QString)), this, SLOT(printData(QString)));
-//    }
+    view.show();
 
 #else
     //    IP          Series          Password    MAC
@@ -192,4 +177,3 @@ int main(int argc, char *argv[])
 
     return app.exec();
 }
-

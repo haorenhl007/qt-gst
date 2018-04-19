@@ -1,57 +1,55 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.2
 
-ApplicationWindow {
+import io.qmlinfo 1.0
+
+Rectangle {
     id: mainPage
     visible: true
-    visibility: "FullScreen"
+//    x: 0
+//    y: 0
+    width: 1280
+    height: 720
 
-    property bool isFirst: false;
+    // property ///////////////////////////////////////////////////////////
+    property alias loaderSource: pageLoader.source
 
-//    function pageSwitch() {
-//        if (isFirst) {
-//            pageLoader.source = "account.qml"
-//        } else {
-//            pageLoader.source = "qrcode.qml"
-//        }
-//        isFirst = !isFirst;
-//    }
+    // signal ///////////////////////////////////////////////////////////
+    signal sendMessage(string account, string password)
+    signal updateMessage(string state)
 
-//    MouseArea {
-//        anchors.fill: parent
-//        onClicked: pageSwitch();
-//    }
-
-    Loader {
-        objectName: "pageLoader"
-        id: pageLoader
-        source: "qrc:/QRCode.qml"
-//        sourceComponent: rect
-//        focus: true
+    function updateMsg(data){
+        console.log(data);
+        // check accepted
+        if (data.indexOf('Configure') != -1) {
+            pageLoader.source = "qrc:/Configure.qml"
+        }
     }
+
     Connections {
         target: pageLoader.item
         onMessage: {
-            console.log(page)
+            console.log("to: " + page)
             pageLoader.source = page
+        }
+        onLogin: {
+            mainPage.sendMessage(account, password)
         }
     }
 
-    Rectangle {
-        id: flowTest
-        width: 30
-        height: 30
-        visible: true
-//        color: parent.color
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 0
+    Component.onCompleted: {
+        mainPage.updateMessage.connect(updateMsg);
+    }
 
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                pageLoader.source = "Configure.qml"
-            }
-        }
+    // main layout ///////////////////////////////////////////////////////////
+    QmlInfo {
+        id: qmlInfo
+    }
+
+    Loader {
+        id: pageLoader
+
+        anchors.fill: parent
+        source: "qrc:/QrCode.qml"
     }
 }

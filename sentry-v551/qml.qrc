@@ -5,7 +5,7 @@
         <file>Images/Controls/Page/Arrow/Switch_Left_Active.png</file>
         <file>Images/Controls/Page/Arrow/Switch_Right.png</file>
         <file>Images/Controls/Page/Arrow/Switch_Right_Active.png</file>
-        <file>QRCode.qml</file>
+        <file>QrCode.qml</file>
         <file>ComSetting.qml</file>
         <file>ComSidebar.qml</file>
         <file>main.qml</file>
@@ -18,5 +18,6 @@
         <file>ComEvent.qml</file>
         <file>ComHeader.qml</file>
         <file>ComDate.qml</file>
+        <file>testQRcode.png</file>
     </qresource>
 </RCC>

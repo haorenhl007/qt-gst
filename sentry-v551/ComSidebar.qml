@@ -1,11 +1,11 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.3
 
-Rectangle {
+Item {
 
-//    width: 200
-//    height: parent.height
-//    color: "blue"
+    id: comSidebar
+    // PageLoader using
+    signal message(string page)
 
     Image {
         id: image
@@ -21,6 +21,9 @@ Rectangle {
         x: 18
         y: 137
         text: qsTr("Live")
+        onClicked: {
+            comSidebar.message("ComLive.qml")
+        }
     }
 
     Button {
@@ -28,6 +31,9 @@ Rectangle {
         x: 18
         y: 183
         text: qsTr("Playback")
+        onClicked: {
+            comSidebar.message("ComPlayback.qml")
+        }
     }
 
     Button {
@@ -35,6 +41,9 @@ Rectangle {
         x: 18
         y: 228
         text: qsTr("Event")
+        onClicked: {
+            comSidebar.message("ComEvent.qml")
+        }
     }
 
     Button {
@@ -42,6 +51,9 @@ Rectangle {
         x: 18
         y: 365
         text: qsTr("Setting")
+        onClicked: {
+            comSidebar.message("ComSetting.qml")
+        }
     }
 
     Button {
@@ -49,6 +61,13 @@ Rectangle {
         x: 18
         y: 411
         text: qsTr("Logout")
+        onClicked: {
+            comSidebar.message("Account.qml")
+        }
     }
 
+    Component.onCompleted: {
+        print("ComSidebar Component.onCompleted")
+        comSidebar.message("signal sent");
+    }
 }

@@ -27,15 +27,21 @@ LIBS += -lmosquittopp -lmosquitto
 DISTFILES +=
 
 HEADERS += \
-    accountlogin.h \
     qtmosq.h \
     player.h \
-    playstream.h
+    playstream.h \
+    mqttclient.h \
+    playerview.h \
+    qmlinfo.h \
+    adapterdemo.h
 
 SOURCES += main.cpp \
-    accountlogin.cpp \
     player.cpp \
-    playstream.cpp
+    playstream.cpp \
+    mqttclient.cpp \
+    playerview.cpp \
+    qmlinfo.cpp \
+    adapterdemo.cpp
 
 RESOURCES += \
     qml.qrc

@@ -2,31 +2,46 @@ import QtQuick 2.0
 import QtQuick.Controls 1.4
 
 Item {
+    id: configurePage
 
-    // PageLoader using
-    signal message(string page)
+    // property ///////////////////////////////////////////////////////////
+    property int speed: 0
+
+    // signal ///////////////////////////////////////////////////////////
+
+    // main layout ///////////////////////////////////////////////////////////
 
     ComSidebar {
+        anchors.left: parent.left
+        anchors.leftMargin: 0
+        //            anchors.fill: parent.height
     }
 
-    StackView {
+//    Component {
+//        id: rightView
+//    }
 
-        ComLive {
+    Loader {
+        id: pageLoader
+        anchors.right: parent.right
+        anchors.rightMargin: 0
+        source: "qrc:/ComLive.qml"
+        //            sourceComponent: rightView
+        focus: true
+    }
 
+    Binding {
+        property: "speed"
+        value: speed
+    }
+
+    Connections {
+        target: pageLoader.item
+        onMessage: {
+            console.log("to: " + page)
+            pageLoader.source = page
         }
 
-        ComPlayback {
-
-        }
-
-        ComEvent {
-
-        }
-
-        ComSetting {
-
-        }
-
-        anchors.left: sideBar.right
+        Component.onCompleted: print("Connections Component.onCompleted")
     }
 }
