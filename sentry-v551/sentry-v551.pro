@@ -30,7 +30,6 @@ HEADERS += \
     qtmosq.h \
     player.h \
     playstream.h \
-    mqttclient.h \
     playerview.h \
     qmlinfo.h \
     adapterdemo.h
@@ -38,7 +37,6 @@ HEADERS += \
 SOURCES += main.cpp \
     player.cpp \
     playstream.cpp \
-    mqttclient.cpp \
     playerview.cpp \
     qmlinfo.cpp \
     adapterdemo.cpp
